@@ -1,5 +1,6 @@
 FROM jenkins/jenkins:lts-alpine
 USER root
+#RUN addgroup -g 999 -S dockersock
 RUN apk update && \
     apk add ca-certificates \
     curl \
@@ -10,5 +11,5 @@ RUN apk update && \
     py-pip && \
     rm -rf /var/cache/apk/*
 RUN pip install docker-compose
-RUN usermod -a -G docker jenkins
+RUN usermod -a -G ping jenkins
 USER jenkins
