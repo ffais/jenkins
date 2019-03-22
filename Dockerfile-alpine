@@ -1,0 +1,14 @@
+FROM jenkins/jenkins:lts-alpine
+USER root
+RUN apk update && \
+    apk add ca-certificates \
+    curl \
+    dateutils\
+    jq \
+    docker \
+    shadow \
+    py-pip && \
+    rm -rf /var/cache/apk/*
+RUN pip install docker-compose
+RUN usermod -a -G docker jenkins
+USER jenkins
